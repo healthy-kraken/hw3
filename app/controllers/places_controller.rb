@@ -1,6 +1,10 @@
 class PlacesController < ApplicationController
   def index
-    @places = Place.all
+    @places = Place.select("MIN(id) as id, name, MIN(created_at) as created_at").group(:name)
+  end
+
+  def forget
+    @places = Place.select("MIN(id) as id, name, MIN(created_at) as created_at").group(:name)
   end
 
   def new
@@ -14,6 +18,12 @@ class PlacesController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @place = Place.find(params[:id])
+    Place.where(name: @place.name).destroy_all
+    redirect_to places_path
   end
 
   private

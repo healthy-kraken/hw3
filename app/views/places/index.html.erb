@@ -10,7 +10,7 @@
   <tbody>
     <% @places.each do |place| %>
       <tr>
-        <td><%= link_to place.name, place %></td>
+        <td><%= link_to place.name, place_entries_path(place) %></td>
         <td><%= place.created_at.strftime("%B %d, %Y") %></td>
       </tr>
     <% end %>
@@ -19,3 +19,5 @@
 <br>
 <br>
 <%= link_to "New Place", new_place_path %>
+&nbsp;&nbsp;
+<%= link_to "Forget this Place", forget_places_path %>

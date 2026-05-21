@@ -1,0 +1,27 @@
+<h1>Forget a Place</h1>
+<p>Select a place to remove it from your journal.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Created</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @places.each do |place| %>
+      <tr>
+        <td><%= place.name %></td>
+        <td><%= place.created_at.strftime("%B %d, %Y") %></td>
+        <td>
+          <%= button_to "Forget", place_path(place), method: :delete,
+                data: { turbo_confirm: "Are you sure you want to forget #{place.name}?" } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= link_to "Back to Places", places_path %>

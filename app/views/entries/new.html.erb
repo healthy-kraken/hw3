@@ -1,0 +1,26 @@
+<h1>New Post: <%= @place.name %></h1>
+
+<%= form_with model: [@place, @entry] do |f| %>
+  <div>
+    <%= f.label :title, "Title" %>
+    <%= f.text_field :title %>
+  </div>
+  <br>
+  <div>
+    <%= f.label :occurred_on, "Date" %>
+    <%= f.date_field :occurred_on %>
+  </div>
+  <br>
+  <div>
+    <%= f.label :description, "Description" %>
+    <br>
+    <%= f.text_area :description, rows: 8, cols: 60 %>
+  </div>
+  <br>
+  <div>
+    <%= f.submit "Save Post" %>
+  </div>
+<% end %>
+
+<br>
+<%= link_to "Back to Entries", place_entries_path(@place) %>
