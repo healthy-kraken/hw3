@@ -1,0 +1,21 @@
+<h1>Places I've Been</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Created</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @places.each do |place| %>
+      <tr>
+        <td><%= link_to place.name, place %></td>
+        <td><%= place.created_at.strftime("%B %d, %Y") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<br>
+<%= link_to "New Place", new_place_path %>
